@@ -18,7 +18,8 @@ Last but not least, the ```delegatecall``` literally works as it does on compani
 By using the script within the contract ```Solution06.sol``` we can generate the exact message that will trigger the fallback in the way we want. 
 
 With the message created simply run in console:
-    ```await contract.sendTransaction({from: player, value: 0, data: "0xdd365b8b"})```
+
+```await contract.sendTransaction({from: player, value: 0, data: "0xdd365b8b"})```
 
 That's it!
 
