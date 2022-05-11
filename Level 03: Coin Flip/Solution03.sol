@@ -6,10 +6,12 @@ import "./CoinFlip.sol";
 contract coinFlipper{
 
     using SafeMath for uint256;
-    address CoinFlipAddress = 0x2c5CfC2522594e5A6df26fB72d5f7A3Fc8F51a33;
     uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
 
-    CoinFlip instance = CoinFlip(CoinFlipAddress);
+    constructor(address _coinFlipContract) {
+        CoinFlip instance = CoinFlip(_coinFlipContract);
+    }
+
 
     function flipCoin() public {
         uint256 blockValue = uint256(blockhash(block.number.sub(1)));     
