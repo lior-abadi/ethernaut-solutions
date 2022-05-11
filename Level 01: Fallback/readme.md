@@ -5,6 +5,7 @@ assigning the ownership to the last person who triggered this fallback by doing 
 - Calling an existing function without passing required data
 - Sending ether to the contract without any data
 
+
 ## 2) Solutions
 - Wasting too much time and effort depositing 1001 times 0.001 ether each time so the ownership changes.
 - Triggering the fallback function.

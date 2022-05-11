@@ -8,7 +8,6 @@ If the last digit of a hex chain is 0,2,4,6,8 or A, C, E; the casted uint will b
 (and viceversa for odd ones...)
 
 
-
 ## 2) Solution:
 By running a script with the following logic, you can get any amount of consecutiveWins. 
 The contract also restricts the user to pass a batch of calls into the same block. They need 
