@@ -22,5 +22,5 @@ Solidity works with "integer" numbers, no decimal nor fractions exist.
     3) If the result of CastedHash/FACTOR is 1, send a true value, otherwise send a false one.
     4) Repeat this logic the desired amount of times, without calling the flip function more than once per block.
    
-The solution is within the Solution03.sol
+The solution is within the ```Solution03.sol```
 
