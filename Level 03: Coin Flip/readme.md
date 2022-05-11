@@ -20,8 +20,7 @@ Solidity works with "integer" numbers, no decimal nor fractions exist.
     1) Check the last block hash
     2) Cast the block hash into a uint256
     3) If the result of CastedHash/FACTOR is 1, send a true value, otherwise send a false one.
-    4) Repeat this logic the desired amount of times, without calling the flip function more than
-        once per block.
-
+    4) Repeat this logic the desired amount of times, without calling the flip function more than once per block.
+   
 The solution is within the Solution03.sol
 
