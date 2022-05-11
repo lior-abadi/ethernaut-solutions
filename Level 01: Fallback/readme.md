@@ -1,6 +1,6 @@
 ## 1) Catch:
 The poorly implemented fallback function "receive" changes an important logic of the contract
-assigning the ownership to the last person who triggered this fallback by doing one this actions:
+assigning the ownership to the last person who triggered this fallback by doing one this actions: <br>
     a) Calling an non existing function
     b) Calling an existing function without passing required data
     c) Sending ether to the contract without any data
