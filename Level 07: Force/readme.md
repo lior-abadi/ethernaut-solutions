@@ -25,4 +25,4 @@ To predestinate our instance address we need two things: the sender address and 
 
 Under the ```SolutionB07.ipynb``` there is a script that takes the level instance address and the last nonce and returns the new contract address.
 
-By the time of this solution, the current nonce was ***4192**. And the output of the program was **0xD8695d911Ed8b3d765523aFC324377dCe5799961**
+By the time of this solution, the current nonce was **4192**. And the output of the program was **0xD8695d911Ed8b3d765523aFC324377dCe5799961**
