@@ -26,3 +26,10 @@ To predestinate our instance address we need two things: the sender address and 
 Under the ```SolutionB07.ipynb``` there is a script that takes the level instance address and the last nonce and returns the new contract address.
 
 By the time of this solution, the current nonce was **4192**. And the output of the program was **0xD8695d911Ed8b3d765523aFC324377dCe5799961**
+
+More intresting are the timestamps of each transaction!
+- Token Transfer (**May-12-2022 02:31:01 PM +UTC**): https://rinkeby.etherscan.io/tx/0xc57e275142f8adf898abfe3dddb711e8b23f3308c580face44b942ddfa0ff60a
+
+- Contract Creation (**May-12-2022 02:32:01 PM +UTC**): https://rinkeby.etherscan.io/tx/0x2954b330db8d5e3ebc955c7222d019527e742ae7e785f36eccc241641f7f20a7
+
+And that's it!
