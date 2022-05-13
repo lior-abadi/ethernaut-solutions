@@ -1,5 +1,5 @@
 # ethernaut-solutions
-Solutions for each challenge of the Ethernaut Game made by OpenZeppelin
+Solutions for each challenge of the Ethernaut Game made by OpenZeppelin. You can check it out by visiting: https://ethernaut.openzeppelin.com/
 
 ## Structure
 Each level has two sections. Catch and Solution.
