@@ -12,4 +12,4 @@ This one-way contract can be achived with two ways:
 
 Both examples will work, but the latter is quite more explicit to understand what is happening in here.
 
-By running any of those examples you shall keep the throne, beware of the White Walkers anyways!
+By running any of those examples you shall keep the throne, beware of the White Walkers anyways! 
