@@ -3,7 +3,7 @@ This level forces you to learn how tokens are transfered on the Ethereum Blockch
 
 
 ## 2) Solution
-Creating an auxiliar smart contract is the way. But even if low level functions that transfer ether are tried to excecute, the transaction will revert. Technically, there are two ways to force ether into a contract that lacks of a fallback payable fuction. We will address both of them.
+In here, even if low level functions that transfer ether are tried to excecute, the transaction attempt will be reverted. Technically, there are two ways to force ether into a contract that lacks of a fallback payable fuction. We will address both of them.
 
 The achievable solutions are the following:
 - Selfdesctruct a contract and set its tokens to be sent to the empty contract.
