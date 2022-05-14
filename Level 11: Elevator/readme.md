@@ -1,5 +1,5 @@
 ## 1) Catch
-Look closely at the interface, and ask to yourself... do interfaces have implemented functions? 
+Look closely at the interface, and ask yourself... do interfaces have implemented functions? 
 Although it may seem a little bit confusing, what we need in here is to access the ```if statement``` inside the ```goTo()``` function in such way to crack the boolean logic this contract relies on.
 
 ## 2) Solution
