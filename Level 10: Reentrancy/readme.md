@@ -47,7 +47,7 @@ An example lackling a mutex should be:
 The mutex itself can be implemented as a function modifier or function calls inside the function.
 
 - Option A: Mutex inside the function.
-    
+    ```
     bool reentrancyMutex = false;
     function withdraw(uint _amount) public {
         require(!reentrancyMutex, "Reentrant call");
@@ -58,18 +58,18 @@ The mutex itself can be implemented as a function modifier or function calls ins
         require(result);
         reentrancyMutex = false;
     }
-    
+    ```
 In here, the function should be fully excecuted, if there is a reentrant call, the last line of code won't be run and the first ```require``` will revert the excecution.
 
 - Option B: Mutex as a modifier. Using ```ReentrancyGuard.sol```.
-    
+    ```
     function withdraw(uint _amount) public nonReentrant(){
         require(balances[msg.sender] >= _amount, "You don't have that amount of tokens!"); 
         balances[msg.sender] -= _amount;
         (bool result,) = msg.sender.call{value:_amount}("");
         require(result);
     }
-    
+    ```
 
     The logic is the same as option A but implemented on a modifier. You can check the modifier code by visiting: 
     https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.6.0/contracts/security/ReentrancyGuard.sol
