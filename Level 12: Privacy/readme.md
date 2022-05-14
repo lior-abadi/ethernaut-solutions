@@ -13,7 +13,8 @@ Storage At:
 - 6: ```data[3]```
 
 By consulting the contract storageDataAt with the following script on console ```data[2]``` value can be known:
-    const data2 = await web3.eth.getStorageAt(await contract.address, 5)
+
+    ```const data2 = await web3.eth.getStorageAt(await contract.address, 5)```
 
 We must cast the value of data2 because the array of data is defined as ```bytes32``` but the ```unlock``` function checks its casted value at ```bytes16```!
 
