@@ -7,7 +7,7 @@ The array of storage will be organized with the following logic. The uint256 var
 Storage At:
 - 0: ```locked```
 - 1: ```ID```
-- 2: ```flattening```, ```denomination```, ```awkwardness```.
+- 2: ```flattening```, ```denomination```, ```awkwardness```
 - 3: ```data[0]```
 - 4: ```data[1]```
 - 5: ```data[2]```
