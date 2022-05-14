@@ -13,14 +13,16 @@ Lets assum that contract A has a balance of 100 ETH from different users and has
 
         function withdraw(uint _amount) public {
         if(balances[msg.sender] >= _amount) {
-        (bool result,) = msg.sender.call{value:_amount}("");
+        (bool result,) = msg.sender.call{value:_amount}(""); // <----------- **Reentrant Line**
         if(result) {
             _amount;
         }
         balances[msg.sender] -= _amount;
         }
     }
-    
+
+Before explaining the whole process, the **Reentrant Line** is when the fallback function of the attacker contract is triggered which causes a recurrent call on the withdraw function.
+
 1) The conditional checks if the caller has a balance registered on the contract mapping. That's why it is important to generate a deposit before excecuting this exploit.
 2) The low level call function just excecutes to transfer the ```_amount``` of tokens.
 3) After the tokens are transfered, the contract updates the local balance mapping of the withdrawer.
