@@ -3,6 +3,7 @@ The approach to solve this level will be the same of the level 8 (Vault). We nee
 
 ## 2) Solution
 The array of storage will be organized with the following logic. The uint256 variables ocupy a whole storage unit. The variables below that size can be compressed into a single storage unit. The array of storage will contain on each index:
+
 Storage At:
 - 0: ```locked```
 - 1: ```ID```
