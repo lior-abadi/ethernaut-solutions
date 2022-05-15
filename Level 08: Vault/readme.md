@@ -18,4 +18,4 @@ We will solve this in two ways!
 
 For further information about how variables are stored, we suggest checking the level 12!
 
-By sending the ```unlock()``` transaction with the ```_password``` this level is completed!
+By sending the ```unlock()``` transaction with ```_password``` as parameter this level is completed!
