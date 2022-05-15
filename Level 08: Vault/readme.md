@@ -12,6 +12,7 @@ We will solve this in two ways!
 
 2) You can always query the data storage of the contract. Running this script will give you the password!
     
+    
     const _password = await web3.eth.getStorageAt(await contract.address, 1) 
 
 
