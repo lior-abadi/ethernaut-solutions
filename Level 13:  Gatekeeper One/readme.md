@@ -89,7 +89,7 @@ You can check and play arround with this Solidity script to check if the key is 
 ### 2) **Gate Two**
 This is for sure the most difficult part to crack. It is highly recommended to understand how the ```gasleft()``` function works and when the require statement starts to calculate. There are several ways to do so. We will cover two of them, but both are extremely related.
 
-- 1) We need to copy-paste the contract itself and make a file that contains both contracts, the caller and the base one. This will help us to track each step while debugging our transaction. The file should be something like this (in order to use the Remix built-in debugger):
+- 1) **Alternative One:** We need to copy-paste the contract itself and make a file that contains both contracts, the caller and the base one. This will help us to track each step while debugging our transaction. The file should be something like this (in order to use the Remix built-in debugger):
 
 ```
     // SPDX-License-Identifier: MIT
@@ -143,7 +143,7 @@ There are four arrow buttons, from left to right. Go back to the last function b
 
 **Why this reverts anyways?** Because the sent gas does not fits the requirements of the gate two. Precisely, just before assigning the remaining gas of the call to the ```a``` parameter of the ```mod``` function. In order to satisfy this step we need to track the gas consumpted by the call just before it assigns that value into ```a```. To do so, we can jump to where the call was reverted an go back slowly until we see the mentioned step. At "step details" the remaining gas can be scoped. By knowing the initial gas sent we can ```Initial Gas - Remaining Gas = Consumpted Gas```. We need in here to have the ```Remaining Gas``` to be a multiple of ```8191```. So, to get the amount of gas we just need to: ```8191 * Margin + Consumpted Gas``` will give us the exact amount of gas that is needed to satisfy this gate.
 
-- 2) The option one is the theory behind this solution. In here, by knowing aproximately the consumpted gas of the first steps we can run multiple calls to the contract an iterate near that gas value. This is because that consumpted gas value deppends on how the level contract and the instance was deployed in terms of optimizer and other compiler settings. We can create another caller contract that loops over the call in order to get the exact gas value.
+- 2) **Alternative Two:** The option one is the theory behind this solution. In here, by knowing aproximately the consumpted gas of the first steps we can run multiple calls to the contract an iterate near that gas value. This is because that consumpted gas value deppends on how the level contract and the instance was deployed in terms of optimizer and other compiler settings. We can create another caller contract that loops over the call in order to get the exact gas value.
 
 ```
     // SPDX-License-Identifier: MIT
