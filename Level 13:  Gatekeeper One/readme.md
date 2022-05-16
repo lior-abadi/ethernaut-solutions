@@ -91,7 +91,7 @@ This is for sure the most difficult part to crack. It is highly recommended to u
 
 - 1) We need to copy-paste the contract itself and make a file that contains both contracts, the caller and the base one. This will help us to track each step while debugging our transaction. The file should be something like this (in order to use the Remix built-in debugger):
 
-
+```
     // SPDX-License-Identifier: MIT
     pragma solidity 0.6.0;
 
@@ -135,6 +135,7 @@ This is for sure the most difficult part to crack. It is highly recommended to u
         }
 
     }
+```
 
 The idea is to first deploy the ```GatekeeperOne``` then ```GateSneakOne``` and after that, having the ```GatekeeperOne``` address make the ```callEnter``` call. The key can be any bytes8 date because this excecution will revert before checking that key. With the reversal, you can check that on Remix transactions feed there is a ```debug``` button next to the reverted tx. Let's debug it. 
 
@@ -147,7 +148,9 @@ Why this reverts anyways? Because the sent gas does not fits the requirements of
 ```
     // SPDX-License-Identifier: MIT
     pragma solidity ^0.4.18;
+
     contract Caller {
+
         function callEnter(bytes8 _key, address _gateKeeper, uint256 _offset, uint256 _initialGas) public returns(bool){
             for (uint256 i = 0; i < _offset; i++) {
                 if (_gateKeeper.call.gas(i + _initialGas + 8191 * 5)(bytes4(keccak256("enter(bytes8)")), _key)) {
@@ -156,6 +159,7 @@ Why this reverts anyways? Because the sent gas does not fits the requirements of
             }
         }        
     }
+
 ```
 
 By tuning the call with the ```offset``` and the ```_initialGas``` we can iterate around that gas value in order to get the right call. The initial gas can be set as: ```Consumpted Gas - Offset / 2 ```, where the ```Consumpted Gas``` can be estimated with the method of step 1.
