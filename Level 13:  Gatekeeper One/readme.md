@@ -91,6 +91,7 @@ This is for sure the most difficult part to crack. It is highly recommended to u
 
 - 1) We need to copy-paste the contract itself and make a file that contains both contracts, the caller and the base one. This will help us to track each step while debugging our transaction. The file should be something like this (in order to use the Remix built-in debugger):
 
+
     // SPDX-License-Identifier: MIT
     pragma solidity 0.6.0;
 
