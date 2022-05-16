@@ -143,7 +143,7 @@ There are four arrow buttons, from left to right. Go back to the last function b
 
 **Why this reverts anyways?** Because the sent gas does not fits the requirements of the gate two. Precisely, just before assigning the remaining gas of the call to the ```a``` parameter of the ```mod``` function. In order to satisfy this step we need to track the gas consumed by the call just before it assigns that value into ```a```. To do so, we can jump to where the call was reverted an go back slowly until we see the mentioned step. At "step details" the remaining gas can be scoped. 
 
-By knowing the initial gas sent we can ```Initial Gas - Remaining Gas = Consumed Gas```. We need in here to have the ```Remaining Gas``` to be a multiple of ```8191```. 
+By knowing the initial gas sent we can ```Initial Gas - Remaining Gas = Consumed Gas```. We need in here the ```Remaining Gas``` to be a multiple of ```8191```. 
 
 To get the amount of gas we just need to: ```8191 * Margin + Consumed Gas``` will give us the exact amount of gas that is needed to satisfy this gate.
 
