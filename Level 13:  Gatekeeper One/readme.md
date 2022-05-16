@@ -4,10 +4,10 @@ This level focuses on three different aspects. Knowing from where the transactio
 ## 2) Solution
 We will address the solution in three parts, one for each gate. We wil leave the second gate to the end just to make the explaination more fluid.
 
-### 1) **Gate One**
+### 1) **Gate One: Origin vs Sender**
 This gate is easily opened while making the call from a contract rather than a user. Making this type of call makes the ```tx.origin = address(callerContract)``` whereas the ```msg.sender = address(user)```.
 
-### 3) **Gate Three**
+### 3) **Gate Three: Variable Casting**
 This gate can be a little bit confusing but if you think this part as a set of equations, to have a consistent equation system (the one that has one solution), we need to find the intersection of the system. We can get the initial value of this problem by scoping the third condition. The conditions that need to be satisfied are the following:
 
 - ```uint32(uint64(_gateKey)) == uint16(uint64(_gateKey)) ```
@@ -86,7 +86,7 @@ You can check and play arround with this Solidity script to check if the key is 
         }
     }
 
-### 2) **Gate Two**
+### 2) **Gate Two: Gas Management**
 This is for sure the most difficult part to crack. It is highly recommended to understand how the ```gasleft()``` function works and when the require statement starts to calculate. There are several ways to do so. We will cover two of them, but both are extremely related.
 
 - 1) **Alternative One:** We need to copy-paste the contract itself and make a file that contains both contracts, the caller and the base one. This will help us to track each step while debugging our transaction. The file should be something like this (in order to use the Remix built-in debugger):
