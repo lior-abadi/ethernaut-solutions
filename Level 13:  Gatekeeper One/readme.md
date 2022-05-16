@@ -170,4 +170,4 @@ By tuning the call with the ```offset``` and the ```_initialGas``` we can iterat
 *If you are among the few ones who read up to here, I admire you. WAGMI!*
 
 
-Poof, that was a long but interesting way to learn more about how Solidity works!
+Oof, that was a long but interesting way to learn more about how Solidity works!
