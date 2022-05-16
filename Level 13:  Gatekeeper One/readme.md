@@ -159,7 +159,6 @@ Why this reverts anyways? Because the sent gas does not fits the requirements of
             }
         }        
     }
-
 ```
 
 By tuning the call with the ```offset``` and the ```_initialGas``` we can iterate around that gas value in order to get the right call. The initial gas can be set as: ```Consumpted Gas - Offset / 2 ```, where the ```Consumpted Gas``` can be estimated with the method of step 1.
