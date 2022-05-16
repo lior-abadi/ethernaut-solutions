@@ -141,11 +141,11 @@ The idea is to first deploy the ```GatekeeperOne``` then ```GateSneakOne``` and 
 
 There are four arrow buttons, from left to right. Go back to the last function block, go to the last immediate call, go forward to the next immediate call, go forward to the next function call. You can play with that until you see the reversal or you can click at "Click here to jump where the call reverted.".
 
-**Why this reverts anyways?** Because the sent gas does not fits the requirements of the gate two. Precisely, just before assigning the remaining gas of the call to the ```a``` parameter of the ```mod``` function. In order to satisfy this step we need to track the gas consumpted by the call just before it assigns that value into ```a```. To do so, we can jump to where the call was reverted an go back slowly until we see the mentioned step. At "step details" the remaining gas can be scoped. By knowing the initial gas sent we can ```Initial Gas - Remaining Gas = Consumpted Gas```. We need in here to have the ```Remaining Gas``` to be a multiple of ```8191```. 
+**Why this reverts anyways?** Because the sent gas does not fits the requirements of the gate two. Precisely, just before assigning the remaining gas of the call to the ```a``` parameter of the ```mod``` function. In order to satisfy this step we need to track the gas consumed by the call just before it assigns that value into ```a```. To do so, we can jump to where the call was reverted an go back slowly until we see the mentioned step. At "step details" the remaining gas can be scoped. By knowing the initial gas sent we can ```Initial Gas - Remaining Gas = Consumed Gas```. We need in here to have the ```Remaining Gas``` to be a multiple of ```8191```. 
 
-To get the amount of gas we just need to: ```8191 * Margin + Consumpted Gas``` will give us the exact amount of gas that is needed to satisfy this gate.
+To get the amount of gas we just need to: ```8191 * Margin + Consumed Gas``` will give us the exact amount of gas that is needed to satisfy this gate.
 
-- 2) **Alternative Two:** The option one is the theory behind this solution. In here, by knowing aproximately the consumpted gas of the first steps we can run multiple calls to the contract an iterate near that gas value. This is because that consumpted gas value deppends on how the level contract and the instance was deployed in terms of optimizer and other compiler settings. We can create another caller contract that loops over the call in order to get the exact gas value.
+- 2) **Alternative Two:** The option one is the theory behind this solution. In here, by knowing aproximately the consumed gas of the first steps we can run multiple calls to the contract an iterate near that gas value. This is because that consumed gas value deppends on how the level contract and the instance was deployed in terms of optimizer and other compiler settings. We can create another caller contract that loops over the call in order to get the exact gas value.
 
 ```
     // SPDX-License-Identifier: MIT
@@ -163,7 +163,7 @@ To get the amount of gas we just need to: ```8191 * Margin + Consumpted Gas``` w
     }
 ```
 
-By tuning the call with the ```offset``` and the ```_initialGas``` we can iterate around that gas value in order to get the right call. The initial gas can be set as: ```Consumpted Gas - Offset / 2 ```, where the ```Consumpted Gas``` can be estimated with the method of step 1.
+By tuning the call with the ```offset``` and the ```_initialGas``` we can iterate around that gas value in order to get the right call. The initial gas can be set as: ```Consumed Gas - Offset / 2 ```, where the ```Consumed Gas``` can be estimated with the method of step 1.
 
 *If you are among the few ones who read up to here, I admire you. WAGMI!*
 
