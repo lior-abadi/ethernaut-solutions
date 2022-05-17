@@ -35,7 +35,7 @@ contract SneakLevelTwo {
         return (_x ^ _y == _z);
     }
 
-    function conmutation(uint64 _x, uint64 _y, uint64 _z) public pure returns(bool, uint64, bytes8){
+    function association(uint64 _x, uint64 _y, uint64 _z) public pure returns(bool, uint64, bytes8){
         bool isValid = (_x ^ _z == _y);
         uint64 key = _x ^ _z;
         return(isValid, key, bytes8(key));
