@@ -9,7 +9,7 @@ This is an overview of every level without giving the solution. This is a sort o
 Also, sometimes it gives a context of the key concept of the problem.
 
 ### Solution
-A detailed explanation of what is going on and the solution *per-se*. Some levels require further analysis and deepth and may include python scripts or 
+A detailed explanation of what is going on and the solution *per-se*. Some levels require further analysis and depth and may include python scripts or 
 other ways of information just to make it more understandable.
 
 Hope you enjoy this!
