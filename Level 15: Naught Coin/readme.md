@@ -41,7 +41,7 @@ First lets deploy the ```DrainingWallet``` contract.
     }
 
 
-You can first create a level instance from the Ethernaut site and then use the instance address while deploying this on Remix.
+Also you can create a level instance from the Ethernaut site and then use the instance address while deploying this on Remix.
 
 
     // SPDX-License-Identifier: MIT
