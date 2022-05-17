@@ -42,8 +42,7 @@ contract SneakLevelTwo {
     }
 
     function gateThree(bytes8 _gateKey, address _address) public pure returns(bool){
-        uint64 lastArgument = uint64(0) - 1;
-        return( uint64(bytes8(keccak256(abi.encodePacked(_address)))) ^ uint64(_gateKey) == lastArgument);
+        return( uint64(bytes8(keccak256(abi.encodePacked(_address)))) ^ uint64(_gateKey) == maxValue);
     }
 
 }
