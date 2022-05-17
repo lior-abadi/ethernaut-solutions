@@ -92,4 +92,4 @@ With the first parameter being the address of the first deployed contract and th
 
 Once we have increased the allowance to the drainer contract, we simply call ```drain``` and the tokens will be gone!
 
-Congratulations, thanks to ObiWan-ce you were able to crack this!
+Congratulations, thanks to the ```ObiWan-ce``` force you were able to crack this!
