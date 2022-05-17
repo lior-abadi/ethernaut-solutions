@@ -2,7 +2,7 @@
 The approach to solve this level will be the same of the level 8 (Vault). We need to access in someway the values stored in memory. Knowing that the Storage works as an array, how does the storage *packs* the data? Are all variables stored *independently* or they can be compressed into one storage unit? When?
 
 ## 2) Solution
-The array of storage will be organized with the following logic. The uint256 variables ocupy a whole storage unit. The variables below that size can be compressed into a single storage unit. The array of storage will contain on each index:
+The array of storage will be organized with the following logic. The uint256 variables occupy a whole storage unit. The variables below that size can be compressed into a single storage unit. The array of storage will contain on each index:
 
 Storage At:
 - 0: ```locked```

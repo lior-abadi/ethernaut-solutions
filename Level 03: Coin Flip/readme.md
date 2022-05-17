@@ -1,6 +1,6 @@
 ## 1) Catch
 As an user you can run a script that pushes the transaction into a block with certain properties.
-The casting of a bytes32 into an uint256 can be done to detect vulnerabilites in here.
+The casting of a bytes32 into an uint256 can be done to detect vulnerabilities in here.
 
 Pro tip:
 Considering the zero as an even number.

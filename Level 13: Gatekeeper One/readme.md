@@ -3,7 +3,7 @@ This level focuses on three different aspects. Knowing from where the transactio
 
 
 ## 2) Solution
-We will address the solution in three parts, one for each gate. We wil leave the second gate to the end just to make the explaination more fluid.
+We will address the solution in three parts, one for each gate. We wil leave the second gate to the end just to make the explanation more fluid.
 
 ### 1) **Gate One: Origin vs Sender**
 This gate is easily opened while making the call from a contract rather than a user. Making this type of call makes the ```tx.origin = address(callerContract)``` whereas the ```msg.sender = address(user)```.
@@ -48,10 +48,10 @@ The right side of the condition what it does is adding and truncating "corrupted
 - The second condition tries to say that the truncated version of the key can't be the same as the original one. In other words, it is asking us to have a value different than zero in at least one of the first positions.
 So far: ```key = 0x1XXXXXXXXXXXe52a```.
 
-- The first condition evaluates the impact of downcasting a bigger size of varible into two different smaller sizes. The only thing that makes the difference in here is the amount of positions that are going to be truncated. This will remove the first 8 positions for the bigger one and the fist 12 of the smaller casting. We must have empty data into the positions 9-12.
+- The first condition evaluates the impact of downcasting a bigger size of variable into two different smaller sizes. The only thing that makes the difference in here is the amount of positions that are going to be truncated. This will remove the first 8 positions for the bigger one and the fist 12 of the smaller casting. We must have empty data into the positions 9-12.
 Giving us: ```key = 0x1XXXXXXX0000e52a```. Having the remaining X's as free values (use 0 for example).
 
-You can check and play arround with this Solidity script to check if the key is valid or not:
+You can check and play around with this Solidity script to check if the key is valid or not:
 
     // SPDX-License-Identifier: MIT
     pragma solidity ^0.4.18;
@@ -72,7 +72,7 @@ You can check and play arround with this Solidity script to check if the key is 
         }
 
         /*
-        Equation Two can be cracked having just by chaging the value of the first byte position! 
+        Equation Two can be cracked having just by changing the value of the first byte position! 
         */
         function equationTwo(bytes8 _key) public pure returns(bool){
             return (uint32(uint64(_key)) != uint64(_key));
@@ -136,7 +136,7 @@ This is for sure the most difficult part to crack. It is highly recommended to u
     }   
 ```
 
-The idea is to first deploy the ```GatekeeperOne``` then ```GateSneakOne``` and after that, having the ```GatekeeperOne``` address make the ```callEnter``` call. The key can be any bytes8 date because this excecution will revert before checking that key. With the reversal, you can check that on Remix transactions feed there is a ```debug``` button next to the reverted tx. Let's debug it. 
+The idea is to first deploy the ```GatekeeperOne``` then ```GateSneakOne``` and after that, having the ```GatekeeperOne``` address make the ```callEnter``` call. The key can be any bytes8 date because this execution will revert before checking that key. With the reversal, you can check that on Remix transactions feed there is a ```debug``` button next to the reverted tx. Let's debug it. 
 
 There are four arrow buttons, from left to right. Go back to the last function block, go to the last immediate call, go forward to the next immediate call, go forward to the next function call. You can play with that until you see the reversal or you can click at "Click here to jump where the call reverted.".
 
@@ -146,7 +146,7 @@ By knowing the initial gas sent we can ```Initial Gas - Remaining Gas = Consumed
 
 To get the amount of gas we just need to: ```8191 * Margin + Consumed Gas``` will give us the exact amount of gas that is needed to satisfy this gate.
 
-- 2) **Alternative Two:** The option one is the theory behind this solution. In here, by knowing aproximately the consumed gas of the first steps we can run multiple calls to the contract an iterate near that gas value. This is because that consumed gas value deppends on how the level contract and the instance was deployed in terms of optimizer and other compiler settings. We can create another caller contract that loops over the call in order to get the exact gas value.
+- 2) **Alternative Two:** The option one is the theory behind this solution. In here, by knowing approximately the consumed gas of the first steps we can run multiple calls to the contract an iterate near that gas value. This is because that consumed gas value depends on how the level contract and the instance was deployed in terms of optimizer and other compiler settings. We can create another caller contract that loops over the call in order to get the exact gas value.
 
 ```
     // SPDX-License-Identifier: MIT

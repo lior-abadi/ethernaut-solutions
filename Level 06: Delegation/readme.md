@@ -1,5 +1,5 @@
 ## 1) Catch
-The ```fallback``` function within the Delegation contract will be excecuted with a trigger and if the delegation is successfull it will assign the contract instance as a return. The trick in here is to rely on the pwn() function in some way to steal the ownership.
+The ```fallback``` function within the Delegation contract will be executed with a trigger and if the delegation is successful it will assign the contract instance as a return. The trick in here is to rely on the pwn() function in some way to steal the ownership.
 
 
 ## 2) Solution
@@ -9,9 +9,9 @@ By sending an arbitrary msg to the Delegation contract the ```fallback``` functi
 
 For example: if we send an empty transaction with data: ```"6578706c6f69746564"``` (which by the way means "exploited" expressed in hex) the fallback will be triggered but the delegation will be reversed.
 
-Here is when the solution comes: to solve this level and exploit the contract we need to send explicit instructions to the Delegation to excecute the ```pwn()``` function inside the Delegate contract (which address is passed as a constructor argument of the Delegation contract). 
+Here is when the solution comes: to solve this level and exploit the contract we need to send explicit instructions to the Delegation to execute the ```pwn()``` function inside the Delegate contract (which address is passed as a constructor argument of the Delegation contract). 
 
-Last but not least, the ```delegatecall``` literally works as it does on companies with responsibility and tasks. You can delegate a task but the responsibility will always be yours. In smart contracts it's the same. The delegation delegates the logic of a certain excecution to another contract but the outcome of that excecution impacts directly into the delegation contract (the one who "fires" a certain task). Because in here both contracts have the same owner variable, and the delegation contract excecutes a public function of a library (on this case the Delegate contract) that modifies the ownership of the home contract. 
+Last but not least, the ```delegatecall``` literally works as it does on companies with responsibility and tasks. You can delegate a task but the responsibility will always be yours. In smart contracts it's the same. The delegation delegates the logic of a certain excecution to another contract but the outcome of that execution impacts directly into the delegation contract (the one who "fires" a certain task). Because in here both contracts have the same owner variable, and the delegation contract executes a public function of a library (on this case the Delegate contract) that modifies the ownership of the home contract. 
 
 *On a company will be analogue to ask a trainee to write some code on your behalf and that code is vulnerable and exploited, because you were the one responsible for that task you will be fired thus the outcome of the delegation falls on you (or the payment bonus if the code was a breakthrough...).*
 

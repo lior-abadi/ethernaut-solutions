@@ -6,7 +6,7 @@ The most challenging thing in here both knowing how does the extcodesize works a
 Like the last level, there are three gates that we need to pass. 
 
 - 1) **First Gate:** 
-The first gate is the same as before. By excecuting the call from another contract this gate will be satisfied.
+The first gate is the same as before. By executing the call from another contract this gate will be satisfied.
 
 
 - 2) **Second Gate:**
@@ -33,6 +33,6 @@ Applying the XOR property shown before:
     // Casting the key into the proper variable, we get the key.
     bytes8 key = bytes8(key64);
 
-By puttting everything together, we can create a contract that fits all the metioned requirements. Also, the shown contract has several helper functions that make this process more understandable.
+By putting everything together, we can create a contract that fits all the mentioned requirements. Also, the shown contract has several helper functions that make this process more understandable.
 
 Enjoy!
