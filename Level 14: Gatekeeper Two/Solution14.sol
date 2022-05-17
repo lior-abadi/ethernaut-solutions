@@ -3,10 +3,10 @@ pragma solidity ^0.8.0;
 
 contract SneakLevelTwo {
 
-    constructor(address _levelAddress) {
+    constructor(address _levelInstanceAddress) {
         bytes8 _key = bytes8(uint64(bytes8(keccak256(abi.encodePacked(address(this))))) ^ type(uint64).max);
         bytes memory target = abi.encodeWithSignature("enter(bytes8)", _key);
-        (bool success,) = _levelAddress.call(target);
+        (bool success,) = _levelInstanceAddress.call(target);
         require(success, "Error with this call.");
     }
 
