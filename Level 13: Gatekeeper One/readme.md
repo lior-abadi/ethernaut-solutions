@@ -1,6 +1,7 @@
 ## 1) Catch
 This level focuses on three different aspects. Knowing from where the transaction has to be sent, gas management and how data casting works. Disect the level into three different challenges and it will be solved!
 
+
 ## 2) Solution
 We will address the solution in three parts, one for each gate. We wil leave the second gate to the end just to make the explaination more fluid.
 
