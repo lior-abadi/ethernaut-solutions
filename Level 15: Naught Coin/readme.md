@@ -7,7 +7,7 @@ It is important to understand what is overriding this token contract and how thi
 
 We will rely on the ```allowance``` theory in here. 
 
-**WTF is this Alonso, Alo Wan, Obi Wan, Allowance guy anyways?**
+### **WTF is this Alonso, Alo Wan, Obi Wan, Allowance guy anyways?**
 To answer this we will go to the roots of this. Really. We are programming and studying smart **contracts**. They are a resemblance to old, rusty and traditional law contracts where each function and statement can be interpreted as clauses and rights transfers. While signing a contract you are giving compliance on what it is said in there and in such way you should be awaiting for something to happen in order to execute what the contract says.
 
 For example, you sign a leasing contract that has a clause that allows you to buy or renew the leased good once the period is finished. This has an implicate logic. Once something happens, you acquire (or loose) a right to do something.
